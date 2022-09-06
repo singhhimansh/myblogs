@@ -9,30 +9,6 @@ export default function Home({blogList, title}) {
 
 
 
-    // const [blogList, setBlogList] = useState([]);
-
-
-    // useEffect(() => {
-    //     // localStorage.setItem('localBlogs',JSON.stringify(blogList))
-    //     localStorage.getItem('localBlogs') ||(localStorage.setItem('localBlogs',JSON.stringify([])));
-
-
-    //     const allBlogList =  JSON.parse(localStorage.getItem('localBlogs'));
-    //     setBlogList(allBlogList)
-    //     // console.log(allBlogList)
-    //     console.log(blogList)
-    // }, [])
-
-    // function handleTypeSearch(type){
-    //     console.log('type clicked', type);
-
-    //     let searchedBlogs = blogList.filter((blog)=> blog.type === type );
-
-    //     console.log(searchedBlogs);
-    //     setBlogList(searchedBlogs);
-
-    // }
-
 
 
 
