@@ -6,6 +6,8 @@ import { IconCalendarTime } from '@tabler/icons';
 
 
 export default function BlogDetails({ blogList }) {
+
+    // react router hook to fectch id from URL
     const { id } = useParams();
 
     const [blog, setBlog] = useState({});
@@ -18,6 +20,7 @@ export default function BlogDetails({ blogList }) {
 
 
     return (
+        // individual Blog content display page
         <div className="flex justify-center">
             <div className="blog w-1/2 my-12 flex flex-col gap-2 bg-white p-5 rounded-md shadow-md shadow-gray-200/80 transition-all  " key={blog.id}>
                 <span className=""><Link className="type font-mono text-xs" to={`/filteredblogs/${blog.type}`} ><span className="inline-block"><Badge variant="outline">

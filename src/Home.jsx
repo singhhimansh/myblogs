@@ -1,18 +1,9 @@
-// import { useState, useEffect } from 'react';
-// import Blog from './NewBlog';
-import Bloglist from './Bloglist';
 
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import BlogDetails from "./BlogDetails";
+import Bloglist from './Bloglist';
 
 export default function Home({blogList, title}) {
 
-    console.log('inside home, home running displaying blogs');
-
-
-
-
-
+    // component for Home 
 
     return (
             <Bloglist blogList={blogList} title={title} />

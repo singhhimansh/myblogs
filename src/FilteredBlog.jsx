@@ -6,25 +6,20 @@ import Bloglist from './Bloglist';
 export default function FilteredBlog({ blogList, setBlogList }) {
 
     const [blogs, setFilteredBlogs] = useState([]);
-
+    
+    //React router hook to fetch value from URL
     const { type } = useParams();
-    // console.log(type);
 
-
+    // sideeffect on changing 'type' useState hook each time
     useEffect(() => {
 
         const blogsType = blogList.filter((blog) => blog.type == type);
-        // console.log('blog type', blogsType);
         setFilteredBlogs(blogsType);
-        // console.log(blogs);
-
-        // setBlog(clickedBlog)
     }, [type]);
 
     return (
 
         <>
-            {/* <div className="">{type}</div> */}
             <Bloglist blogList={blogs} title={type} />
         </>
 

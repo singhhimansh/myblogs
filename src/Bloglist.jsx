@@ -7,6 +7,8 @@ export default function Bloglist({ blogList, title }) {
 
     console.log('inside BlogList, displaying blogs');
 
+
+    // fuction to handle Deleting a Blog
    function handleDelete(id){
         console.log('delete', id)
 
@@ -31,10 +33,12 @@ export default function Bloglist({ blogList, title }) {
         <div className="my-20 flex justify-center">
             <div className=" flex flex-col gap-10 w-2/3 ">
                 <div className="my-5">
+                    {/* Header for displaying main content */}
                     <h1 className="text-3xl text-slate-700 font-bold first-letter:uppercase ">{title}</h1>
                     <Divider my="sm" />
                 </div>
 
+                    {/* display list of Blogs */}
                 {
                     blogList.length !== 0 ? (
                         blogList.map((blog) =>
@@ -62,7 +66,7 @@ export default function Bloglist({ blogList, title }) {
 
                         )
                         )
-                    ) : <div className="text-2xl">Oops! No blog found. Add a new blog.</div>
+                    ) : <div className="text-xl md:text-2xl">Oops! No blog found. Add a new blog.</div>
 
                 }
             </div>
