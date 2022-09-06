@@ -93,7 +93,7 @@ export default function NewBlogs({ blogList, setBlogList }) {
                             {...form.getInputProps('type')}
                          required/>
 
-                        <RichTextEditor my={30} sx={{ height: '600px', overflow: 'auto' }} placeholder='Write the blog here...' {...form.getInputProps('blogContent')} />
+                        <RichTextEditor my={30} sx={{ height: '350px', overflow: 'auto' }} placeholder='Write the blog here...' {...form.getInputProps('blogContent')} />
 
                         {!isPending && <Button type="submit" sx={{ width: '120px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} >
                             Save
