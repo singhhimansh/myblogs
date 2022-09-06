@@ -19,7 +19,7 @@ export default function FilteredBlog({ blogList, setBlogList }) {
         // console.log(blogs);
 
         // setBlog(clickedBlog)
-    }, []);
+    }, [type]);
 
     return (
 

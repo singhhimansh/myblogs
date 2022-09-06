@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from "react-router-dom";
 import { Button } from '@mantine/core';
 
 import logo from './images/blognobg.png';
@@ -12,6 +12,16 @@ import BlogDetails from "./BlogDetails";
 
 
 function App() {
+
+  let activeStyle = {
+    color: 'rgb(3 105 161)' ,
+    backgroundColor:'#e0f2fe',
+    // borderLeft: '1px solid #0284c7',
+    boxShadow: '-1px 0px 0px 0px #0284c7'
+  };
+
+
+
 
 
   const [blogList, setBlogList] = useState([]);
@@ -62,13 +72,22 @@ function App() {
 
           </Routes>
         </main>
-        <div className="sidebar w-1/6 my-10 ">
+        <div className="sidebar w-40 my-10 ">
 
-          <div className="flex flex-col gap-5 p-4 border-l-2 border-lime-200">
-            <Link to='/filteredblogs/technology' className='capitalize'>Technology</Link>
-            <Link to='/filteredblogs/entertainment' className='capitalize'>entertainment</Link>
-            <Link to='/filteredblogs/Community' className='capitalize'>Community</Link>
-            <Link to='/filteredblogs/other' className='capitalize'>other</Link>
+          <div className="flex flex-col border-l-2 border-slate-200">
+            <NavLink style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            } to='/filteredblogs/technology' className='capitalize p-4 hover:bg-sky-50 '>Technology</NavLink>
+            <NavLink style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            } to='/filteredblogs/entertainment' className='capitalize p-4 hover:bg-sky-50'>entertainment</NavLink>
+            <NavLink style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            } to='/filteredblogs/Community' className='capitalize p-4 hover:bg-sky-50'>Community</NavLink>
+            <NavLink style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            } to='/filteredblogs/other' className='capitalize p-4 hover:bg-sky-50'>other</NavLink>
+
           </div>
 
         </div>
