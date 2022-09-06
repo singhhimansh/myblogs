@@ -6,15 +6,17 @@ import { useForm } from '@mantine/form';
 import { IconBrandTumblr, IconBallpen, IconDeviceFloppy } from '@tabler/icons';
 import { useNavigate } from 'react-router-dom';
 
+import { format, parse } from "date-fns";
+
 
 
 
 export default function NewBlogs({ blogList, setBlogList }) {
 
-    const [isPending, setIsPending] = useState(false)
+    const [isPending, setIsPending] = useState(false);
+    const navigate = useNavigate();
 
 
-    const navigate = useNavigate()
 
     const form = useForm({
         initialValues: {
@@ -26,7 +28,9 @@ export default function NewBlogs({ blogList, setBlogList }) {
 
         validate: {
             title: (value) => (value.trim().length < 3 ? 'Title must be three character long' : null),
-            author: (value) => (value.trim().length < 3 ? 'Author must be three character long' : null)
+            author: (value) => (value.trim().length < 3 ? 'Author must be three character long' : null),
+            blogContent: (value) => (value.trim().length < 3 ? 'Content must be three character long' : null),
+            type: (value) => (value=== null ? 'Select a blog category' : null)
         },
     });
 
@@ -37,7 +41,7 @@ export default function NewBlogs({ blogList, setBlogList }) {
 
         setTimeout(() => {
 
-            let createdOn = new Date()
+            let createdOn = format(new Date(), "dd-MM-yyyy hh:mm aa")
 
             let id = Math.random();
 
@@ -59,28 +63,8 @@ export default function NewBlogs({ blogList, setBlogList }) {
 
             navigate('/');
 
-        }, 1200);
+        }, 1000);
 
-        //     let createdOn = new Date()
-
-        //     let id= Math.random();
-
-        //     values ={...values,
-        //         'date':createdOn,
-        //         'id':id
-        //     }
-
-        //     let blogsList = JSON.parse(localStorage.getItem('localBlogs'));
-
-        //     // console.log(blogsList)
-        //     blogsList.push(values)
-
-        //    localStorage.setItem('localBlogs', JSON.stringify(blogsList));
-
-        //    navigate('/');
-
-
-        // console.log(values)
 
     }
 
@@ -107,15 +91,15 @@ export default function NewBlogs({ blogList, setBlogList }) {
                             ]}
 
                             {...form.getInputProps('type')}
-                        />
+                         required/>
 
                         <RichTextEditor my={30} sx={{ height: '600px', overflow: 'auto' }} placeholder='Write the blog here...' {...form.getInputProps('blogContent')} />
 
-                        {!isPending && <Button type="submit" sx={{ width: '100px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} >
+                        {!isPending && <Button type="submit" sx={{ width: '120px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} >
                             Save
                         </Button>}
-                        {isPending && <Button type="submit" sx={{ width: '100px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} loading >
-                            Save
+                        {isPending && <Button type="submit" sx={{ width: '120px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} loading >
+                            Saving...
                         </Button>}
 
                     </div>
