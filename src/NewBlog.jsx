@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { Button, TextInput, SegmentedControl} from '@mantine/core';
+import { Button, TextInput, SegmentedControl } from '@mantine/core';
 import { RichTextEditor } from '@mantine/rte';
 import { useForm } from '@mantine/form';
 
 import { IconBrandTumblr, IconBallpen, IconDeviceFloppy } from '@tabler/icons';
+import { useNavigate } from 'react-router-dom';
 
 
-// let blogsList ;
 
 
-export default function NewBlogs({}) {
+export default function NewBlogs({ blogList, setBlogList }) {
 
-    // const [blogContent, setBlogContent] = useState();
-    // const [blogtype, setBlogtype] = useState('react');
+    const [isPending, setIsPending] = useState(false)
+
+
+    const navigate = useNavigate()
 
     const form = useForm({
         initialValues: {
@@ -30,27 +32,55 @@ export default function NewBlogs({}) {
 
     function handleFormSubmit(values) {
 
-        let createdOn = new Date()
-        
-        let id= Math.random();
-        
-        
-        values ={...values,
-            'date':createdOn,
-            'id':id
-        }
-        console.log(createdOn,'   ', id)
-        console.log(values)
-        
-        let blogsList = JSON.parse(localStorage.getItem('localBlogs'));
-        
-        console.log(blogsList)
-        blogsList.push(values)
+        setIsPending(true)
 
-       localStorage.setItem('localBlogs', JSON.stringify(blogsList));
 
-        
-        console.log(values)
+        setTimeout(() => {
+
+            let createdOn = new Date()
+
+            let id = Math.random();
+
+            values = {
+                ...values,
+                'date': createdOn,
+                'id': id
+            }
+
+            let blogsList = JSON.parse(localStorage.getItem('localBlogs'));
+
+            // console.log(blogsList)
+            blogsList.unshift(values);
+
+            setBlogList(blogsList);
+
+            localStorage.setItem('localBlogs', JSON.stringify(blogsList));
+            setIsPending(false)
+
+            navigate('/');
+
+        }, 1200);
+
+        //     let createdOn = new Date()
+
+        //     let id= Math.random();
+
+        //     values ={...values,
+        //         'date':createdOn,
+        //         'id':id
+        //     }
+
+        //     let blogsList = JSON.parse(localStorage.getItem('localBlogs'));
+
+        //     // console.log(blogsList)
+        //     blogsList.push(values)
+
+        //    localStorage.setItem('localBlogs', JSON.stringify(blogsList));
+
+        //    navigate('/');
+
+
+        // console.log(values)
 
     }
 
@@ -58,7 +88,7 @@ export default function NewBlogs({}) {
         <div className="blogs bg-grey-50 flex justify-center my-20">
             <div className="w-3/4 lg:w-1/2">
 
-                <form onSubmit={form.onSubmit( (values) => handleFormSubmit(values))}>
+                <form onSubmit={form.onSubmit((values) => handleFormSubmit(values))}>
 
                     <div className="flex flex-col gap-6">
 
@@ -81,9 +111,12 @@ export default function NewBlogs({}) {
 
                         <RichTextEditor my={30} sx={{ height: '600px', overflow: 'auto' }} placeholder='Write the blog here...' {...form.getInputProps('blogContent')} />
 
-                        <Button type="submit" sx={{ width: '100px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} >
+                        {!isPending && <Button type="submit" sx={{ width: '100px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} >
                             Save
-                        </Button>
+                        </Button>}
+                        {isPending && <Button type="submit" sx={{ width: '100px', margin: 'auto' }} leftIcon={<IconDeviceFloppy size={14} />} loading >
+                            Save
+                        </Button>}
 
                     </div>
                 </form>

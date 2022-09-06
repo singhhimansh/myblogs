@@ -3,13 +3,15 @@ import { Badge, CloseButton, Divider } from '@mantine/core';
 
 export default function Bloglist({ blogList, title }) {
 
+    console.log('inside BlogList, displaying blogs');
+
 
     return (
 
         <div className="my-20 flex justify-center">
             <div className=" flex flex-col gap-10 w-2/3 ">
                 <div className="my-5">
-                    <h1 className="text-3xl font-bold capitalize ">{title}</h1>
+                    <h1 className="text-3xl text-slate-700 font-bold first-letter:uppercase ">{title}</h1>
                     <Divider my="sm" />
                 </div>
 

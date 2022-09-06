@@ -7,6 +7,8 @@ import Bloglist from './Bloglist';
 
 export default function Home({blogList, title}) {
 
+    console.log('inside home, home running displaying blogs');
+
 
 
 

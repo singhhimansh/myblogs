@@ -15,14 +15,18 @@ function App() {
 
   const [blogList, setBlogList] = useState([]);
   const [searchedList, setSearchList] = useState([]);
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
+  const [searchHead, setSearchHead] = useState('')
 
 
 
   // fetch blogs from Local Storage
   useEffect(() => {
 
+    console.log('Inside useEffect running, fetch from local storage')
+
     localStorage.getItem('localBlogs') || (localStorage.setItem('localBlogs', JSON.stringify([])));
+
     const allBlogList = JSON.parse(localStorage.getItem('localBlogs'));
     setBlogList(allBlogList)
 
@@ -36,6 +40,8 @@ function App() {
     const searchedBlogs = blogList.filter(({ title, author, type }) => title.toLowerCase().includes(search) || author.toLowerCase().includes(search) || type.toLowerCase().includes(search))
 
     setSearchList(searchedBlogs);
+    setSearchValue('');
+    setSearchHead(search)
 
   }
 
@@ -82,8 +88,8 @@ function App() {
         <main className='w-5/6'>
           <Routes>
             <Route path='/' exact element={<Home blogList={blogList} title='All Blogs' />} />
-            <Route path='/searchedBlogs' exact element={<Home blogList={searchedList} title='Searched Blogs' />} />
-            <Route path='/Addblog' element={<NewBlog />} />
+            <Route path='/searchedBlogs' exact element={<Home blogList={searchedList} title={`Blogs related to :  ${searchHead}`} />} />
+            <Route path='/Addblog' element={<NewBlog blogList={blogList} setBlogList={setBlogList} />} />
             <Route path='/blogs/:id' exact element={<BlogDetails blogList={blogList} />} />
             <Route path='/filteredblogs/:type' exact element={<FilteredBlog blogList={blogList} setBlogList={setBlogList} />} />
 
