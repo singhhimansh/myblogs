@@ -56,7 +56,7 @@ export default function Bloglist({ blogList, title }) {
                                         on <IconCalendarTime className="inline h-4 self-center" />
                                         <p className="date ">{blog.date}</p>
                                     </div>
-                                    <p className="blogContent mt-3 text-slate-600" dangerouslySetInnerHTML={{ __html: `${blog.blogContent.slice(0, 100)}` }} />
+                                    <p className="blogContent mt-3 text-slate-600" dangerouslySetInnerHTML={{ __html: `${blog.blogContent.slice(0, 200)}...` }} />
                                 </Link>
                             </div>
 
