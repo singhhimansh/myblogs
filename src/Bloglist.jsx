@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Badge, CloseButton, Divider } from '@mantine/core';
+import { Badge, CloseButton, Divider, Popover,Text } from '@mantine/core';
 import { IconCalendarTime } from '@tabler/icons';
 
 
@@ -8,23 +8,9 @@ export default function Bloglist({ blogList, title }) {
     console.log('inside BlogList, displaying blogs');
 
 
-    // fuction to handle Deleting a Blog
-   function handleDelete(id){
+    // fuction to handle Deleting a Blog (Will Be added later)
+    function handleDelete(id) {
         console.log('delete', id)
-
-        // let newBlogList = blogList.filter((blog)=> blog.id !== id );
-
-        // // let blogsList = JSON.parse(localStorage.getItem('localBlogs'));
-        
-        // localStorage.setItem('localBlogs', JSON.stringify(newBlogList));
-        //     // console.log(blogsList)
-        //     // blogsList.unshift(values);
-
-        // setBlogList(blogsList);
-
-        //     // setIsPending(false)
-
-
     }
 
 
@@ -38,7 +24,7 @@ export default function Bloglist({ blogList, title }) {
                     <Divider my="sm" />
                 </div>
 
-                    {/* display list of Blogs */}
+                {/* display list of Blogs */}
                 {
                     blogList.length !== 0 ? (
                         blogList.map((blog) =>
@@ -49,7 +35,18 @@ export default function Bloglist({ blogList, title }) {
                                     <span className="inline-block"><Link className="type font-mono text-xs my-2" to={`/filteredblogs/${blog.type}`} >
                                         <Badge variant="outline">{blog.type}</Badge></Link>
                                     </span>
-                                    <CloseButton title="Delete this blog" size="md" onClick={() => handleDelete(blog.id)} iconSize={20} />
+
+                                    {/* delete button with popover*/}
+                                    <div className="relative">
+                                    <Popover width={200} position="bottom" withArrow shadow="md">
+                                    <Popover.Target>
+                                        <CloseButton title="Delete this blog" size="md" onClick={() => handleDelete(blog.id)} iconSize={20} />
+                                    </Popover.Target>
+                                    <Popover.Dropdown>
+                                        <Text size="sm">Soon: Button to delete the blog. It's functionality will be added later.</Text>
+                                    </Popover.Dropdown>
+                                    </Popover></div>
+
                                 </div>
 
                                 <Link to={`/blogs/${blog.id}`} >
