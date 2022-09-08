@@ -73,10 +73,10 @@ export default function NewBlogs({ blogList, setBlogList }) {
 
     return (
         <div className="blogs bg-grey-50 flex justify-center my-20">
-            <div className="w-3/4 lg:w-1/2">
+            <div className=" w-[95%] md:w-1/2 lg:w-1/2">
 
                 {/* Add new blog form */}
-                <form onSubmit={form.onSubmit((values) => handleFormSubmit(values))}>
+                <form className='' onSubmit={form.onSubmit((values) => handleFormSubmit(values))}>
 
                     <div className="flex flex-col gap-6">
 
@@ -89,7 +89,7 @@ export default function NewBlogs({ blogList, setBlogList }) {
                                 { label: 'Technology', value: 'technology' },
                                 { label: 'Entertainment', value: 'entertainment' },
                                 { label: 'Community', value: 'Community' },
-                                { label: 'Other', value: 'other' },
+                                { label: 'Others', value: 'other' },
                             ]}
 
                             {...form.getInputProps('type')}
